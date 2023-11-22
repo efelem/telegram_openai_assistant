@@ -16,6 +16,40 @@ Before you begin, ensure you have met the following requirements:
 - You have a Telegram account and have created a bot with `@BotFather` to obtain a token.
 - You have an `OpenAI` account to obtain your API keys.
 
+## Launching the Telegram Bot Client on DeepSquare
+
+You can easily launch the Telegram bot client using the `job.telegram_openai_assistant.yaml` workflow file in our repository. Follow these simple steps to get started:
+
+### Launching through the DeepSquare Platform
+
+1. **Log in to the DeepSquare Platform:** Ensure you are logged into [app.deepsquare.run](https://app.deepsquare.run).
+2. **Navigate to Workflows:** Go to the 'Workflows' section in the platform.
+3. **Create a new Workflow:** Click on the 'New Workflow' and copy paste the content of the `job.telegram_openai_assistant.yaml` file
+4. **Start the Workflow:** Once created, you can start the workflow by clicking on the 'Run Workflow' button.
+5. **Monitor and Access:** Monitor the progress of your job under the 'Jobs' section. Upon completion, access the Telegram bot as per the instructions provided in the job logs.
+
+### Launching through the DeepSquare Command Line Tool
+
+1. **Install DeepSquare CLI:** If you haven’t already, install the DeepSquare CLI tool. Instructions can be found [here](https://docs.deepsquare.run/cli/installation).
+2. **Clone the Repository:** Clone the repository containing the `job.telegram_openai_assistant.yaml` file.
+3. **Navigate to the Repository Directory:** Open a terminal and navigate to the directory where you cloned the repository.
+4. **Run the Workflow File:** Execute the following command:
+
+    ```bash
+    deepsquare run job.telegram_openai_assistant.yaml
+    ```
+
+5. **Monitor the Job:** Use the following command to monitor the status of your job:
+
+    ```bash
+    deepsquare status
+    ```
+
+6. **Access the Telegram Bot:** Once the job is complete, follow the instructions provided in the job logs to access and interact with the Telegram bot.
+
+By following these steps, you can effortlessly launch and interact with the Telegram bot client on DeepSquare.
+
+
 ## Installation
 
 Clone the repository to your local machine:
