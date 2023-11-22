@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='deepsquare_bot',
+    name='telegram_openai_assistant',
     version='0.1',
     packages=find_packages(),
     install_requires=[
@@ -12,7 +12,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'deepsquare-bot = deepsquare_bot.bot:main',
+            'chatbot = telegram_openai_assistant.bot:main',
         ],
     },
 )

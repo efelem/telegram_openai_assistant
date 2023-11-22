@@ -1,12 +1,12 @@
-# DeepSquare Bot
+# OpenAI Assistant Telegram Bot
 
-DeepSquare Bot is a conversational AI agent powered by OpenAI, designed to interact with users through Telegram. It leverages the OpenAI API to process and respond to messages.
+This repository provides a general framework for integrating an OpenAI Assistant with a Telegram bot. It allows users to interact with the OpenAI-powered conversational agent through the Telegram platform.
 
 ## Features
 
-- Responds to user queries in real-time.
-- Keeps track of the daily message count.
-- Stores question and answer pairs for future reference.
+- Real-time response to user queries.
+- Daily message count tracking.
+- Storage of question and answer pairs for future retrieval and analysis.
 
 ## Prerequisites
 
@@ -21,8 +21,8 @@ Before you begin, ensure you have met the following requirements:
 Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/your-username/deepsquare_bot.git
-cd deepsquare_bot
+git clone https://github.com/efelem/telegram_openai_assistant
+cd telegram_openai_assistant
 ```
 
 Install the packages:
@@ -46,7 +46,7 @@ TELEGRAM_TOKEN=your-telegram-bot-token
 To start the bot, run the following command in your terminal:
 
 ```bash
-deepsquare-bot
+chatbot
 ```
 
 The bot should now be running and can be interacted with through your Telegram bot interface.
@@ -67,5 +67,5 @@ Distributed under the MIT License. See \`LICENSE\` for more information.
 
 ## Contact
 
-Project Link: [https://github.com/your-username/deepsquare_bot](https://github.com/your-username/deepsquare_bot)
+Project Link: [https://github.com/efelem/telegram_openai_assistant](https://github.com/efelem/telegram_openai_assistant)
 

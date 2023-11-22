@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=/tmp/.job.schema.json
+## Workflow to set up and run deepsquare-bot from a private repository
+
+enableLogging: true
+
+resources:
+  tasks: 1
+  cpusPerTask: 2
+  memPerCpu: 4000
+  gpusPerTask: 0
+
+steps:
+  - name: clone-repo
+    run:
+      command: |
+        git clone https://github.com/efelem/telegram-openai-chatbot.git
+  - name: install-packages
+    run:
+      command: |
+        cd simple-telegram-openai-chatbot
+        pip install -e .
+
+  - name: run-deepsquare-bot
+    run:
+      env:
+        - key: GITHUB_TOKEN
+          value: your-github-token
+        - key: ASSISTANT_ID
+          value: your-assistant-id
+        - key: CLIENT_API_KEY
+          value: your-openai-api-key
+        - key: TELEGRAM_TOKEN
+          value: your-telegram-bot-token
+
+      command: |
+        cd simple-telegram-openai-chatbot
+        chatbot
