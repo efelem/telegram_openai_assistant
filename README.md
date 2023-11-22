@@ -16,6 +16,12 @@ Before you begin, ensure you have met the following requirements:
 - You have a Telegram account and have created a bot with `@BotFather` to obtain a token.
 - You have an `OpenAI` account to obtain your API keys.
 
+You also need 
+
+- An open ai assistant id : https://platform.openai.com/assistants
+- An open ai API key : https://platform.openai.com/api-keys
+- A telegram token : use botfather directly from telegram to create your bot and get the telegram token
+
 ## Installation
 
 Clone the repository to your local machine:
