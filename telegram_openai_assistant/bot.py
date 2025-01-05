@@ -1,41 +1,49 @@
-# bot.py
 import asyncio
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters
-from .config import telegram_token_bot1, telegram_token_bot2
-from .handlers import start, help_command, process_message_bot1, process_message_bot2
+from .config import telegram_token_bots, assistant_id_bots
+from .handlers import BotHandlers
 
-# Initialize the two applications
-application_bot1 = ApplicationBuilder().token(telegram_token_bot1).build()
-application_bot2 = ApplicationBuilder().token(telegram_token_bot2).build()
+class Bot:
+    def __init__(self, token: str, assistant_id: str):
+        """Initialize the bot application with a token and assistant_id"""
+        self.application = ApplicationBuilder().token(token).build()
+        self.assistant_id = assistant_id
+        self.handlers = BotHandlers(self.assistant_id, token)
+        self.setup_handlers()
 
-def setup_handlers_bot1(app):
-    """Sets up the command and message handlers for bot1."""
-    app.add_handler(CommandHandler("start", start))
-    app.add_handler(CommandHandler("help", help_command))
-    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, process_message_bot1))
+    def setup_handlers(self):
+        """Sets up the command and message handlers."""
+        self.application.add_handler(CommandHandler("start", self.handlers.start))
+        self.application.add_handler(CommandHandler("help", self.handlers.help_command))
+        self.application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, self.handlers.process_message))
 
-def setup_handlers_bot2(app):
-    """Sets up the command and message handlers for bot2."""
-    app.add_handler(CommandHandler("start", start))
-    app.add_handler(CommandHandler("help", help_command))
-    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, process_message_bot2))
+    async def send_message(self, message: str):
+        """Send a message to the specified chat_id"""
+        await self.application.bot.send_message(chat_id=self.chat_id, text=message)
+
+    async def start(self):
+        """Start the bot."""
+        await self.application.initialize()
+        await self.application.start()
+        await self.application.updater.start_polling()
+
+    async def stop(self):
+        """Stop the bot."""
+        await self.application.updater.stop()
+        await self.application.stop()
+        await self.application.shutdown()
+
 
 async def start_bots():
-    """Manages the startup and shutdown of both bots."""
-    setup_handlers_bot1(application_bot1)
-    setup_handlers_bot2(application_bot2)
-
-    # Initialize both applications
-    await application_bot1.initialize()
-    await application_bot2.initialize()
-
-    # Start both applications
-    await application_bot1.start()
-    await application_bot2.start()
-
-    # Start polling for both bots
-    await application_bot1.updater.start_polling()
-    await application_bot2.updater.start_polling()
+    """Runs all bot applications concurrently."""
+    bots = [
+        Bot(token, assistant_id)
+        for token, assistant_id in zip(telegram_token_bots, assistant_id_bots)
+    ]
+    
+    # Start all bots concurrently
+    start_tasks = [bot.start() for bot in bots]
+    await asyncio.gather(*start_tasks)
 
     try:
         # Keep the event loop running until interrupted
@@ -44,21 +52,23 @@ async def start_bots():
     except KeyboardInterrupt:
         print("Bots shutting down...")
     finally:
-        # Stop polling for both bots
-        await application_bot1.updater.stop()
-        await application_bot2.updater.stop()
+        # Stop polling for all bots
+        stop_tasks = [bot.application.updater.stop() for bot in bots]
+        await asyncio.gather(*stop_tasks)
 
-        # Stop both applications
-        await application_bot1.stop()
-        await application_bot2.stop()
+        # Stop all applications
+        stop_tasks = [bot.application.stop() for bot in bots]
+        await asyncio.gather(*stop_tasks)
 
-        # Shutdown both applications
-        await application_bot1.shutdown()
-        await application_bot2.shutdown()
+        # Shutdown all applications
+        shutdown_tasks = [bot.application.shutdown() for bot in bots]
+        await asyncio.gather(*shutdown_tasks)
+
 
 def main():
     """Main function to run the bots."""
     asyncio.run(start_bots())
+
 
 if __name__ == "__main__":
     main()
