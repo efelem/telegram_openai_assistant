@@ -19,11 +19,15 @@ def update_message_count(new_count):
     with open(message_count_file, 'w') as file:
         json.dump({"date": str(datetime.date.today()), "count": new_count}, file)
 
-def save_qa(telegram_id, username, question, answer):
-    """Save question and answer pairs to a file with user information."""
+def save_qa(telegram_id, username, question, answer, bot_name):
+    """Save question and answer pairs to a file with user information for each bot."""
+    # Specify the file for each bot's Q&A data
+    qa_file = Path(f"{bot_name}_questions_answers.json")
+    
     if not qa_file.exists():
         with open(qa_file, 'w') as file:
             json.dump([], file)
+    
     with open(qa_file, 'r+') as file:
         data = json.load(file)
         data.append({
