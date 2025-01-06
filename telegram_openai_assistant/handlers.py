@@ -72,10 +72,8 @@ class BotHandlers:
                                 chat_id=group_id,
                                 text=f"Conversation started by {self.bot_name} on group {group_id}. Use /end to terminate."
                             )
-                            answer = self.get_answer(update.message.text).strip()
-                            await context.bot.send_message(chat_id=update.effective_chat.id, text=answer)
                             # Trigger the first turn
-                            await self.manager.handle_turn(answer)
+                            await self.manager.handle_turn(update.message.text)
                     else:
                         # Ignore incoming messages while a conversation is ongoing
                         await context.bot.send_message(

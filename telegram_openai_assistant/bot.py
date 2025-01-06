@@ -83,7 +83,7 @@ class ConversationManager:
         delay = max(5, 15 - elapsed_time)  # Delay is 5 seconds minimum, subtract the elapsed time
 
         print(f"The bot {next_bot_name} tries to answer in group {self.group_id} with response {response}")
-        await next_bot.application.bot.send_message(chat_id=self.group_id, text=f"{next_bot_name}: {response}")
+        await next_bot.application.bot.send_message(chat_id=self.group_id, text=f"{response}")
 
         # Wait for the remaining delay time
         await asyncio.sleep(delay)
