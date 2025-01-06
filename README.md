@@ -1,6 +1,24 @@
-# OpenAI Assistant Telegram Bot
+# Telegram AI Assistant Bot
 
-This repository provides a general framework for integrating an OpenAI Assistant with a Telegram bot. It allows users to interact with the OpenAI-powered conversational agent through the Telegram platform.
+This repository provides a framework for integrating AI-powered assistants with a Telegram bot. Currently, it supports OpenAI's conversational models, allowing users to interact seamlessly through Telegram.
+
+**Path Forward:** We aim to expand this bot's capabilities by integrating support for additional AI platforms such as Anthropic's Claude, Google Bard, and Hugging Face Inference API. This will enable users to choose and switch between multiple AI providers.
+
+## Features
+
+- Real-time responses powered by OpenAI (current implementation).
+- Modular design for future multi-platform AI support.
+- Daily message count tracking.
+- Storage of question and answer pairs for future retrieval and analysis.
+
+## Roadmap
+
+Our next steps include:
+1. Designing a modular architecture to support multiple AI platforms.
+2. Adding compatibility with popular AI providers beyond OpenAI.
+3. Providing seamless configuration for selecting AI platforms in the `.env` file.
+
+If you'd like to contribute to these efforts, check the [Contributions](#contributions) section.
 
 ## Features
 
@@ -107,7 +125,12 @@ By following these steps, you can effortlessly launch and interact with the Tele
 
 ## Contributions
 
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+We welcome contributions to support this path forward. Some potential areas for contribution include:
+
+- Designing the modular framework for multiple AI platforms.
+- Adding integrations for new AI platforms
+- Improving bot configuration and management.
+- Enhancing documentation for future developers and users.
 
 1. Fork the Project
 2. Create your Feature Branch (\`git checkout -b feature/AmazingFeature\`)
