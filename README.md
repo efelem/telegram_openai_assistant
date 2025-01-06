@@ -34,30 +34,42 @@ cd telegram_openai_assistant
 Install the packages:
 
 ```bash
+# If you want to create a venv
+mkdir venv
+python3 -m venv venv
+source venv/bin/activate
+# To install packages
 pip install -e .
 ```
 
 ## Configuration
 
-Create a `.env` file in the root directory and fill in your OpenAI and Telegram credentials:
+Create a `.env` file in the root directory and fill in your OpenAI and Telegram credentials. For consistency, both TELEGRAM_TOKEN_BOT and ASSISTANT_ID_BOT support comma-separated lists for multiple bot configurations.
+
+Example .env file:
 
 ```env
-ASSISTANT_ID=your-assistant-id
+TELEGRAM_TOKEN_BOT=bot1_token,bot2_token
+ASSISTANT_ID_BOT=assistant1_id,assistant2_id
 CLIENT_API_KEY=your-openai-api-key
-TELEGRAM_TOKEN=your-telegram-bot-token
 ```
+
+If you have only one bot, simply provide a single value (e.g., bot1_token or assistant1_id).
+Tokens and IDs will be processed as lists automatically.
 
 ## Usage
 
-To start the bot, run the following command in your terminal:
+To start the bots, run the following command in your terminal:
 
 ```bash
 chatbot
 ```
 
-The bot should now be running and can be interacted with through your Telegram bot interface.
+The bots should now be running and can be interacted with through your Telegram bot interface.
 
 ## Launching the Telegram Bot Client on DeepSquare
+
+> This is not working, until the testnet is up and running again, happening soon.
 
 You can easily launch the Telegram bot client using the `job.telegram_openai_assistant.yaml` workflow file in our repository. Follow these simple steps to get started:
 
